@@ -1,0 +1,115 @@
+<template>
+    <template if:true={loading}>
+        <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+    </template>
+    <div class="container">
+        <div class="form-search">
+            <div class="slds-form">
+                <div class="slds-form-element slds-form-element_horizontal cus-width-form-element">
+                    <label class="slds-form-element__label" for="horizontal-input-id-01">Tên</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="horizontal-input-id-01" placeholder="Search name…" class="slds-input" />
+                    </div>
+                </div>
+                <div class="slds-form-element slds-form-element_horizontal cus-width-form-element">
+                    <label class="slds-form-element__label" for="horizontal-input-id-02">Lớp</label>
+                    <lightning-combobox name="progress" value={value} placeholder="Select Progress" options={options}
+                        onchange={handleChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-form-element slds-form-element_horizontal cus-width-form-element">
+                    <label class="slds-form-element__label" for="horizontal-input-id-03">Ngày sinh</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__control">
+                            <input type="date" id="horizontal-input-id-03" placeholder="" class="slds-input" />
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="slds-form-element slds-form-element_horizontal slds-m-top_small slds-m-bottom_medium cus-width-form-element">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__control">
+                            <lightning-button variant="brand" label="Tìm kiếm" title="Tìm kiếm" onclick={handleSearch}
+                                class=""></lightning-button>
+                            <lightning-button variant="brand" label="Thêm mới" title="Thêm mới" onclick={handleSearch}
+                                class="slds-m-left_large"></lightning-button>
+                            <lightning-button variant="destructive" label="Xóa" title="Xóa" onclick={handleDelete}
+                                class="slds-m-left_large"></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- table -->
+    <div style="height: 300px;">
+        <lightning-datatable key-field="id" data={data}
+            suppress-bottom-bar columns={columns}>
+        </lightning-datatable>
+    </div>
+    <!-- <div class="slds-box slds-theme_default">
+        <lightning-card title="Accounts">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset slds-text-title_caps">
+                        <th class="slds-is-resizable" scope="col">
+                            <div class="slds-truncate" title="Name">
+                                Name
+                            </div>
+                        </th>
+                        <th class="slds-is-resizable" scope="col">
+                            <div class="slds-truncate" title="Account Number">
+                                Account Number
+                            </div>
+                        </th>
+                        <th class="slds-is-resizable" scope="col">
+                            <div class="slds-truncate" title="Industry">
+                                Industry
+                            </div>
+                        </th>
+                        <th class="slds-is-resizable" scope="col">
+                            <div class="slds-truncate" title="Phone">
+                                Phone
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={accounts}>
+                        <template for:each={accounts} for:item="acc">
+                            <tr key={acc.Id}>
+                                <th scope="row" data-label="Name">
+                                    <div class="slds-truncate" title={acc.Name}>{acc.Name}</div>
+                                </th>
+                                <th scope="row" data-label="Account Number">
+                                    <div class="slds-truncate" title={acc.AccountNumber}>{acc.AccountNumber}</div>
+                                </th>
+                                <th scope="row" data-label="Industry">
+                                    <div class="slds-truncate" title={acc.Industry}>{acc.Industry}</div>
+                                </th>
+                                <th scope="row" data-label="Phone">
+                                    <template if:true={acc.Phone}>
+                                        <div class="slds-truncate" title={acc.Phone}>{acc.Phone}</div>
+                                    </template>
+                                </th>
+                            </tr>
+                        </template>
+                    </template>
+                </tbody>
+            </table>
+            <template if:true={isDisplayNoRecords}>
+                <div class="slds-align_absolute-center">
+                    <br />
+                    No records found
+                </div>
+            </template>
+        </lightning-card>
+    </div> -->
+    <template if:true={isDisplayNoRecords}>
+        <div class="slds-align_absolute-center">
+            <br />
+            No records found
+        </div>
+    </template>
+</template>
